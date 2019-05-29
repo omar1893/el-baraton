@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import * as products from '../json/products.json'
+// import * as products from '../json/products.json'
 
 // import  * as data from '../data.json'
 Vue.use(Vuex)

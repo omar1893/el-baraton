@@ -31,7 +31,7 @@ import * as categories from "../json/categories.json";
 export default {
   data() {
     return {
-      categories: categories,
+      categories: categories.categories,
       selected: null,
       filter:{
           type:'category',
