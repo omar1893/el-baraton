@@ -1,36 +1,54 @@
 <template>
-  <div>
-    <h2>Cart</h2>
-  </div>
+  <v-container>
+    <v-layout row wrap xs4>
+  
+      <v-flex xs12 sm6 md4 lg3 xl2 class="px-2 mb-3" v-for="product in products" :key="product.id">
+        <card-product :product="product"></card-product>
+      </v-flex>
+  
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
+import cardProduct from "./card-product.vue"
+import { mapGetters } from "vuex"
 export default {
-  data () {
+  components: {
+    cardProduct
+  },
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      products: []
+    };
+  },
+  computed: {
+    ...mapGetters({
+      filteredProducts: "getProducts"
+    })
+  },
+  methods: {
+    setFirstProducts: function() {
+      this.$store.dispatch("setArticles");
+      this.products = this.$store.state.products;
+    }
+  },
+  created() {
+    this.setFirstProducts();
+  },
+  watch: {
+    filteredProducts: {
+      handler: function(val, oldVal) {
+        this.products = this.filteredProducts;
+      }
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+<style>
+.w-100 {
+  width: 100%;
 }
 </style>
