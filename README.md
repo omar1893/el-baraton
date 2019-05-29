@@ -1,4 +1,4 @@
-# rp-test
+# Rappi - El Baraton
 
 > A Vue.js project
 
